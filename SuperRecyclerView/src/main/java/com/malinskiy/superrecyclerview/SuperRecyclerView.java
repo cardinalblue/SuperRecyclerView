@@ -50,6 +50,7 @@ public class SuperRecyclerView extends FrameLayout {
 
     protected int mSuperRecyclerViewMainLayout;
     private   int mProgressId;
+    private OnEmptyViewChanged mEmptyViewListener;
 
     public SwipeRefreshLayout getSwipeToRefresh() {
         return mPtrLayout;
@@ -95,6 +96,11 @@ public class SuperRecyclerView extends FrameLayout {
         }
     }
 
+    public void setEmptyInflateId(int layoutId) {
+        mEmptyId = layoutId;
+        mEmpty.setLayoutResource(layoutId);
+    }
+
     private void initView() {
         if (isInEditMode()) {
             return;
@@ -116,8 +122,17 @@ public class SuperRecyclerView extends FrameLayout {
 
         mEmpty = (ViewStub) v.findViewById(R.id.empty);
         mEmpty.setLayoutResource(mEmptyId);
-        if (mEmptyId != 0)
+        mEmpty.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                if (mEmptyViewListener != null) {
+                    mEmptyViewListener.OnEmptyViewInflated(inflated);
+                }
+            }
+        });
+        if (mEmptyId != 0) {
             mEmptyView = mEmpty.inflate();
+        }
         mEmpty.setVisibility(View.GONE);
 
         initRecyclerView(v);
@@ -514,5 +529,13 @@ public class SuperRecyclerView extends FrameLayout {
         LINEAR,
         GRID,
         STAGGERED_GRID
+    }
+
+    public interface OnEmptyViewChanged {
+        void OnEmptyViewInflated(View view);
+    }
+
+    public void setOnEmptyViewChanged(OnEmptyViewChanged listener) {
+        mEmptyViewListener = listener;
     }
 }
