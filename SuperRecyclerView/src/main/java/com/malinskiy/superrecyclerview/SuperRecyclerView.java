@@ -99,6 +99,7 @@ public class SuperRecyclerView extends FrameLayout {
     public void setEmptyInflateId(int layoutId) {
         mEmptyId = layoutId;
         mEmpty.setLayoutResource(layoutId);
+        inflateView();
     }
 
     private void initView() {
@@ -122,20 +123,19 @@ public class SuperRecyclerView extends FrameLayout {
 
         mEmpty = (ViewStub) v.findViewById(R.id.empty);
         mEmpty.setLayoutResource(mEmptyId);
-        mEmpty.setOnInflateListener(new ViewStub.OnInflateListener() {
-            @Override
-            public void onInflate(ViewStub stub, View inflated) {
-                if (mEmptyViewListener != null) {
-                    mEmptyViewListener.OnEmptyViewInflated(inflated);
-                }
-            }
-        });
         if (mEmptyId != 0) {
-            mEmptyView = mEmpty.inflate();
+            inflateView();
         }
         mEmpty.setVisibility(View.GONE);
 
         initRecyclerView(v);
+    }
+
+    private void inflateView() {
+        mEmptyView = mEmpty.inflate();
+        if (mEmptyViewListener != null) {
+            mEmptyViewListener.OnEmptyViewInflated();
+        }
     }
 
     /**
@@ -532,7 +532,7 @@ public class SuperRecyclerView extends FrameLayout {
     }
 
     public interface OnEmptyViewChanged {
-        void OnEmptyViewInflated(View view);
+        void OnEmptyViewInflated();
     }
 
     public void setOnEmptyViewChanged(OnEmptyViewChanged listener) {
