@@ -51,6 +51,7 @@ public class SuperRecyclerView extends FrameLayout {
     protected int mSuperRecyclerViewMainLayout;
     private   int mProgressId;
     private OnEmptyViewChanged mEmptyViewListener;
+    private boolean mCanLoadMore = true;
 
     public SwipeRefreshLayout getSwipeToRefresh() {
         return mPtrLayout;
@@ -195,7 +196,7 @@ public class SuperRecyclerView extends FrameLayout {
 
                     if (((totalItemCount - lastVisibleItemPosition) <= ITEM_LEFT_TO_LOAD_MORE ||
                          (totalItemCount - lastVisibleItemPosition) == 0 && totalItemCount > visibleItemCount)
-                        && !isLoadingMore) {
+                        && !isLoadingMore && mCanLoadMore) {
 
                         isLoadingMore = true;
                         if (mOnMoreListener != null) {
@@ -537,5 +538,14 @@ public class SuperRecyclerView extends FrameLayout {
 
     public void setOnEmptyViewChanged(OnEmptyViewChanged listener) {
         mEmptyViewListener = listener;
+    }
+
+    public void dispose() {
+        if (mEmpty != null) {
+            mEmpty.setVisibility(View.GONE);
+        }
+    }
+    public void setCanLoadMore(boolean canLoadMore) {
+        mCanLoadMore = canLoadMore;
     }
 }
