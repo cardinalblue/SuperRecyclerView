@@ -1,12 +1,12 @@
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    compileSdkVersion 24
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 23
+        minSdkVersion 15
+        targetSdkVersion 24
         versionCode 3
         versionName "1.1.0"
     }
@@ -20,6 +20,11 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile 'com.android.support:recyclerview-v7:21.0.3'
-    compile 'com.nineoldandroids:library:2.4.0'
+    def googleSupportLibVer = "24.2.1"
+
+    compile "com.android.support:recyclerview-v7:${googleSupportLibVer}"
+    compile "com.nineoldandroids:library:2.4.0"
+    // FIXME: It's a workaround to have the SuperRecyclerView use the custom
+    // FIXME: RecyclerView internally.
+    compile project(":CustomWidget")
 }
