@@ -26,5 +26,5 @@ dependencies {
     compile "com.nineoldandroids:library:2.4.0"
     // FIXME: It's a workaround to have the SuperRecyclerView use the custom
     // FIXME: RecyclerView internally.
-    compile project(":CustomWidget")
+    compile project(":lib-widget")
 }
