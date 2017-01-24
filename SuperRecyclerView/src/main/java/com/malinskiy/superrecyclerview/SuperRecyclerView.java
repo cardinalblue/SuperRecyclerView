@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 
+import com.cardinalblue.widget.RecyclerViewWithTopSeparator;
 import com.malinskiy.superrecyclerview.swipe.SwipeDismissRecyclerViewTouchListener;
 
 public class SuperRecyclerView extends FrameLayout {
@@ -103,6 +104,14 @@ public class SuperRecyclerView extends FrameLayout {
         inflateView();
     }
 
+    public void setIsShowSeparator(boolean yesOrNo) {
+        if (mRecycler == null ||
+            !(mRecycler instanceof RecyclerViewWithTopSeparator)) return;
+
+        RecyclerViewWithTopSeparator view = (RecyclerViewWithTopSeparator) mRecycler;
+        view.setIsShowSeparator(yesOrNo);
+    }
+
     private void initView() {
         if (isInEditMode()) {
             return;
@@ -145,11 +154,11 @@ public class SuperRecyclerView extends FrameLayout {
     protected void initRecyclerView(View view) {
         View recyclerView = view.findViewById(android.R.id.list);
 
-        if (recyclerView instanceof RecyclerView)
+        if (recyclerView instanceof RecyclerView) {
             mRecycler = (RecyclerView) recyclerView;
-        else
+        } else {
             throw new IllegalArgumentException("SuperRecyclerView works with a RecyclerView!");
-
+        }
 
         if (mRecycler != null) {
             mRecycler.setClipToPadding(mClipToPadding);
