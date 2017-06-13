@@ -11,11 +11,20 @@
         android:layout_centerHorizontal="true"
         android:inflatedId="@id/more_progress"/>
 
+    <ViewStub
+        android:id="@+id/more_progress_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:inflatedId="@id/more_progress_horizontal"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/ptr_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/more_progress">
+        android:layout_above="@id/more_progress"
+        android:layout_toLeftOf="@id/more_progress_horizontal">
 
         <com.cardinalblue.widget.RecyclerViewWithTopSeparator
             android:id="@android:id/list"

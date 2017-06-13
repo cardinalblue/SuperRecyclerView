@@ -28,6 +28,7 @@ public class SuperRecyclerView extends FrameLayout {
     protected View         mProgressView;
     protected View         mMoreProgressView;
     protected View         mEmptyView;
+    protected View         mRootView;
 
     protected boolean mClipToPadding;
     protected int     mPadding;
@@ -116,29 +117,30 @@ public class SuperRecyclerView extends FrameLayout {
         if (isInEditMode()) {
             return;
         }
-        View v = LayoutInflater.from(getContext()).inflate(mSuperRecyclerViewMainLayout, this);
-        mPtrLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
+        mRootView = LayoutInflater.from(getContext()).inflate(mSuperRecyclerViewMainLayout, this);
+
+        mPtrLayout = (SwipeRefreshLayout) mRootView.findViewById(R.id.ptr_layout);
         mPtrLayout.setEnabled(false);
 
-        mProgress = (ViewStub) v.findViewById(android.R.id.progress);
+        mProgress = (ViewStub) mRootView.findViewById(android.R.id.progress);
 
         mProgress.setLayoutResource(mProgressId);
         mProgressView = mProgress.inflate();
 
-        mMoreProgress = (ViewStub) v.findViewById(R.id.more_progress);
+        mMoreProgress = (ViewStub) mRootView.findViewById(R.id.more_progress);
         mMoreProgress.setLayoutResource(mMoreProgressId);
         if (mMoreProgressId != 0)
             mMoreProgressView = mMoreProgress.inflate();
         mMoreProgress.setVisibility(View.GONE);
 
-        mEmpty = (ViewStub) v.findViewById(R.id.empty);
+        mEmpty = (ViewStub) mRootView.findViewById(R.id.empty);
         mEmpty.setLayoutResource(mEmptyId);
         if (mEmptyId != 0) {
             inflateView();
         }
         mEmpty.setVisibility(View.GONE);
 
-        initRecyclerView(v);
+        initRecyclerView(mRootView);
     }
 
     private void inflateView() {
@@ -260,6 +262,14 @@ public class SuperRecyclerView extends FrameLayout {
      */
     public void setLayoutManager(RecyclerView.LayoutManager manager) {
         mRecycler.setLayoutManager(manager);
+        // change the progress bar to horizontal one.
+        if(manager.canScrollHorizontally()){
+            mMoreProgress = (ViewStub) mRootView.findViewById(R.id.more_progress_horizontal);
+            mMoreProgress.setLayoutResource(mMoreProgressId);
+            if (mMoreProgressId != 0)
+                mMoreProgressView = mMoreProgress.inflate();
+            mMoreProgress.setVisibility(View.GONE);
+        }
     }
 
     /**
