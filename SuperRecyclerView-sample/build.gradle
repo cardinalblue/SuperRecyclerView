@@ -19,11 +19,11 @@ android {
 }
 
 dependencies {
-    compile project(':SuperRecyclerView')
+    implementation project(':SuperRecyclerView')
 
-    compile rootProject.ext.dep.supportAppcompatV7
-    compile rootProject.ext.dep.supportCardViewV7
+    implementation rootProject.ext.dep.supportAppcompatV7
+    implementation rootProject.ext.dep.supportCardViewV7
 
-    compile 'com.malinskiy:materialicons:1.0.1'
-    compile 'com.eowise:recyclerview-stickyheaders:0.5.0@aar'
+    implementation 'com.malinskiy:materialicons:1.0.1'
+    implementation 'com.eowise:recyclerview-stickyheaders:0.5.0@aar'
 }
