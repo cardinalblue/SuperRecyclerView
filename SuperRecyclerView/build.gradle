@@ -20,9 +20,9 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile rootProject.ext.dep.supportRecyclerViewV7
-    compile "com.nineoldandroids:library:2.4.0"
+    implementation rootProject.ext.dep.supportRecyclerViewV7
+    implementation "com.nineoldandroids:library:2.4.0"
     // FIXME: It's a workaround to have the SuperRecyclerView use the custom
     // FIXME: RecyclerView internally.
-    compile project(":lib-widget")
+    implementation project(":lib-widget")
 }
