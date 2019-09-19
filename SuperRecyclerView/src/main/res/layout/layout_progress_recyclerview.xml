@@ -19,7 +19,7 @@
         android:layout_centerVertical="true"
         android:inflatedId="@id/more_progress_horizontal"/>
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/ptr_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:visibility="invisible"/>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ViewStub
         android:id="@+id/empty"

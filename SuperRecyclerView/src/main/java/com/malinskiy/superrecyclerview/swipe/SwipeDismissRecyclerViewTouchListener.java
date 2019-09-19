@@ -18,8 +18,8 @@ package com.malinskiy.superrecyclerview.swipe;
 
 import android.graphics.Rect;
 import android.os.SystemClock;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.view.MotionEventCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
