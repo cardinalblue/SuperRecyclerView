@@ -22,6 +22,7 @@ repositories {
 dependencies {
     implementation rootProject.ext.dep.supportRecyclerViewV7
     implementation "com.nineoldandroids:library:2.4.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     // FIXME: It's a workaround to have the SuperRecyclerView use the custom
     // FIXME: RecyclerView internally.
     implementation project(":lib-widget")
