@@ -212,7 +212,7 @@ public class SuperRecyclerView extends FrameLayout {
                         isLoadingMore = true;
                         if (mOnMoreListener != null) {
                             mMoreProgress.setVisibility(View.VISIBLE);
-                            mOnMoreListener.onMoreAsked(mRecycler.getAdapter().getItemCount(), ITEM_LEFT_TO_LOAD_MORE, lastVisibleItemPosition);
+                            mOnMoreListener.onMoreAsked(getAdapterItemCountSafe(), ITEM_LEFT_TO_LOAD_MORE, lastVisibleItemPosition);
 
                         }
                     }
@@ -320,7 +320,7 @@ public class SuperRecyclerView extends FrameLayout {
                 mProgress.setVisibility(View.GONE);
                 isLoadingMore = false;
                 mPtrLayout.setRefreshing(false);
-                if (mRecycler.getAdapter().getItemCount() == 0 && mEmptyId != 0) {
+                if (getAdapterItemCountSafe() == 0 && mEmptyId != 0) {
                     mEmpty.setVisibility(View.VISIBLE);
                 } else if (mEmptyId != 0) {
                     mEmpty.setVisibility(View.GONE);
@@ -566,5 +566,10 @@ public class SuperRecyclerView extends FrameLayout {
     }
     public void setCanLoadMore(boolean canLoadMore) {
         mCanLoadMore = canLoadMore;
+    }
+
+    private int getAdapterItemCountSafe() {
+        RecyclerView.Adapter adapter = getAdapter();
+        return adapter != null ? adapter.getItemCount() : 0;
     }
 }
