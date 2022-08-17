@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 
-import com.cardinalblue.widget.RecyclerViewWithTopSeparator;
+import com.cardinalblue.widget.view.RecyclerViewWithTopSeparator;
 import com.malinskiy.superrecyclerview.swipe.SwipeDismissRecyclerViewTouchListener;
 
 public class SuperRecyclerView extends FrameLayout {
