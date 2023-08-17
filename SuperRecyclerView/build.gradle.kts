@@ -3,6 +3,8 @@ plugins {
 }
 
 android {
+    namespace = "com.malinskiy.superrecyclerview"
+
     compileSdk = Versions.compileSdk
 
     defaultConfig {
