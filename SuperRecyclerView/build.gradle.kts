@@ -25,6 +25,6 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     cbModules {
-        libWidget()
+        + libWidget
     }
 }
