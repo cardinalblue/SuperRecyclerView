@@ -24,9 +24,9 @@ android {
 dependencies {
     add("implementation", project(":SuperRecyclerView"))
     // Google Support Library.
-    implementation(Dependencies.JetPack.appcompat)
-    implementation(Dependencies.JetPack.cardView)
+    implementation(libs.jetpack.appcompat)
+    implementation(libs.jetpack.cardview)
 
-    implementation("com.malinskiy:materialicons:1.0.1")
+    implementation(libs.view.materialIcons)
     implementation("com.eowise:recyclerview-stickyheaders:0.5.0@aar")
 }
